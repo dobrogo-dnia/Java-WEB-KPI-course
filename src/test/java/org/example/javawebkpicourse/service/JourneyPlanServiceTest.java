@@ -17,18 +17,14 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.EnabledIf;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -69,7 +65,6 @@ class JourneyPlanServiceTest {
     @ParameterizedTest
     @MethodSource("provideJourneyPlanContexts")
     @Order(1)
-    @EnabledIf(value = "#{environment['tests.unit-tests.enabled'] == 'true'}", loadContext = true)
     void shouldPlaceJourneyPlan(JourneyPlanContext journeyPlanContext) {
 
         when(paymentService.processPayment(paymentArgumentCaptor.capture())).thenAnswer(inv -> buildPaymentTransaction(((Payment) inv.getArgument(0)).getTourId(),
