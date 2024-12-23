@@ -11,6 +11,10 @@ application:
     dobby:
       name: dobby
       message: Hello from space cat ${application.greetings.dobby.name}
+  feature:
+    toggles:
+      traveller-greeting: false
+      feature: false
 
 tests:
   unit-tests:
