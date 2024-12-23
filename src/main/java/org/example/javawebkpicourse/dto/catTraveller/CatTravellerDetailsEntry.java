@@ -15,6 +15,6 @@ public class CatTravellerDetailsEntry {
     String email;
     String breed;
     String homePlanet;
-    List<String> favouriteRoutes;
+    List<String> favouriteRoute;
 
 }

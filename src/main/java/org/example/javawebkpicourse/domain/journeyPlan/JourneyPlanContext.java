@@ -12,7 +12,7 @@ public class JourneyPlanContext {
 
     String tourId;
     String travellerName;
-    List<JourneyPlanEntry> entries;
+    List<JourneyPlanEntry> journeyPlanEntries;
     Double totalPrice;
 
 }

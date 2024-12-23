@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: CatTraveller API
+  description: API for managing cat traveller data
+  version: 1.0.0
+
+paths:
+  /api/v1/travellers:
+    get:
+      summary: Get all cat travellers
+      tags:
+        - CatTravellers
+      responses:
+        '200':
+          description: List of all cat travellers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatTravellerDetailsListDto'
+    post:
+      summary: Create a new cat traveller
+      tags:
+        - CatTravellers
+      requestBody:
+        description: Cat traveller data to create a new cat traveller
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatTravellerDetailsDto'
+      responses:
+        '200':
+          description: Cat traveller created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatTravellerDetailsDto'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /api/v1/travellers/{id}:
+    get:
+      summary: Get cat traveller by ID
+      tags:
+        - CatTravellers
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID of the cat traveller to retrieve
+      responses:
+        '200':
+          description: Cat traveller found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatTravellerDetailsDto'
+        '404':
+          description: Cat traveller not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    CustomerDetailsDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 80
+          description: Name of the cat traveller
+        email:
+          type: string
+          format: email
+          description: Email of the cat traveller
+        breed:
+          type: string
+          maxLength: 50
+          description: Breed of the cat traveller
+        homePlanet:
+          type: string
+          maxLength: 50
+          description: home planet of the cat traveller
+        favouriteRoute:
+          type: array
+          items:
+            type: string
+          description: favourite routes
+
+    CatTravellerDetailsListDto:
+      type: object
+      properties:
+        catTravellersDetailsEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatTravellerDetailsEntry'
+
+    CatTravellerDetailsEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of the cat traveller
+        name:
+          type: string
+          description: Name of the customer
+        email:
+          type: string
+          format: email
+          description: Email of the cat traveller
+        breed:
+          type: string
+          maxLength: 50
+          description: Breed of the cat traveller
+        homePlanet:
+          type: string
+          maxLength: 50
+          description: home planet of the cat traveller
+        favouriteRoute:
+          type: array
+          items:
+            type: string
+          description: favourite routes
+
+    ValidationError:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "400"
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParamsViolationDetails'
+
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          description: URI reference identifying the error type
+        title:
+          type: string
+          description: A short description of the error
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed description of the error
+
+    ParamsViolationDetails:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          description: Field where validation error occurred
+        reason:
+          type: string
+          description: Reason for the validation error

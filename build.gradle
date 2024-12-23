@@ -9,16 +9,17 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
-//ext {
-//    minimumCoveragePerFile = 0.7
-//    filesExcludedFromCoverage = [
-//
-//    ]
-//}
+ext {
+    minimumCoveragePerFile = 0.5
+    filesExcludedFromCoverage = [
+            "**/*JavaWebKpiCourseApplication.*",
+            "**/config/*Configuration.*"
+    ]
+}
 
 configurations {
     compileOnly {
@@ -30,8 +31,8 @@ repositories {
     mavenCentral()
 }
 
-//apply from: "${rootProject.projectDir}/gradle/test.gradle"
-//apply from: "${rootProject.projectDir}/gradle/jacoco.gradle"
+apply from: "${rootProject.projectDir}/gradle/test.gradle"
+apply from: "${rootProject.projectDir}/gradle/jacoco.gradle"
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
@@ -40,9 +41,8 @@ dependencies {
     implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     implementation 'org.mapstruct:mapstruct:1.6.2'
     compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
@@ -51,7 +51,4 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation "org.wiremock:wiremock-jetty12:3.9.2"
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
-    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
-    testImplementation 'org.projectlombok:lombok:1.18.34'
 }

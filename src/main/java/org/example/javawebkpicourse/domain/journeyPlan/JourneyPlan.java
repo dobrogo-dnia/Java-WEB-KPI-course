@@ -11,7 +11,7 @@ public class JourneyPlan {
 
     String id;
     UUID paymentId;
-    List<JourneyPlan> journeyPlanEntries;
+    List<JourneyPlanEntry> journeyPlanEntries;
     String tourId;
     String travellerName;
     Double totalPrice;

@@ -1,6 +1,6 @@
 package org.example.javawebkpicourse.service.mapper;
 
-import org.example.javawebkpicourse.common.AvailableRoutes;
+import org.example.javawebkpicourse.common.AvailableRoute;
 import org.example.javawebkpicourse.domain.CatTravellerDetails;
 import org.example.javawebkpicourse.dto.catTraveller.CatTravellerDetailsDto;
 import org.example.javawebkpicourse.dto.catTraveller.CatTravellerDetailsEntry;
@@ -18,10 +18,10 @@ public interface CatTravellerDetailsMapper {
     @Mapping(target = "email", source = "email")
     @Mapping(target = "breed", source = "breed")
     @Mapping(target = "homePlanet", source = "homePlanet")
-    @Mapping(target = "favouriteRoutes", source = "favouriteRoutes", qualifiedByName = "toFavouriteRoutesString")
+    @Mapping(target = "favouriteRoute", source = "favouriteRoute", qualifiedByName = "toFavouriteRouteString")
     CatTravellerDetailsDto toCatTravellerDetailsDto(CatTravellerDetails customerDetails);
 
-    default CatTravellerDetailsListDto toCatTravellerDetailsDto(List<CatTravellerDetails> catTravellerDetails) {
+    default CatTravellerDetailsListDto toCatTravellerDetailsListDto(List<CatTravellerDetails> catTravellerDetails) {
         return CatTravellerDetailsListDto.builder().catTravellerDetailsEntries(toCatTravellerDetailsEntry(catTravellerDetails)).build();
     }
 
@@ -32,10 +32,10 @@ public interface CatTravellerDetailsMapper {
     @Mapping(target = "breed", source = "breed")
     @Mapping(target = "homePlanet", source = "homePlanet")
     @Mapping(target = "favouriteRoute", source = "favouriteRoute", qualifiedByName = "toFavouriteRouteString")
-    CatTravellerDetailsEntry toCatTravellerDetailsEntry(CatTravellerDetails customerDetails);
+    CatTravellerDetailsEntry toCatTravellerDetailsEntry(CatTravellerDetails catTravellerDetails);
 
     @Named("toFavouriteRouteString")
-    default List<String> toFavouriteRouteString(List<AvailableRoutes> favouriteRoute) {
+    default List<String> toFavouriteRouteString(List<AvailableRoute> favouriteRoute) {
         return favouriteRoute.stream().map(route -> route.name().toLowerCase()).toList();
     }
 

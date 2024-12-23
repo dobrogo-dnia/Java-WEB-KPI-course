@@ -1,6 +1,6 @@
 package org.example.javawebkpicourse.common;
 
-public enum AvailableRoutes {
+public enum AvailableRoute {
 
     SECTOR_1_PLANET_ZETA_QUADRANT_121,
     SECTOR_1_PLANET_QUANTUM_QUADRANT_121,

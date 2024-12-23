@@ -33,6 +33,6 @@ public class CatTravellerDetailsDto {
     @Size(max = 50, message = "Your home planet cannot exceed 50 characters. If the name of the planet is longer, please write the intergalactic abbreviation")
     String homePlanet;
 
-    List<String> favouriteRoutes;
+    List<String> favouriteRoute;
 
 }

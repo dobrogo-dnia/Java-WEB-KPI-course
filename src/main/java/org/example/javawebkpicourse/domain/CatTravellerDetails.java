@@ -1,6 +1,6 @@
 package org.example.javawebkpicourse.domain;
 
-import org.example.javawebkpicourse.common.AvailableRoutes;
+import org.example.javawebkpicourse.common.AvailableRoute;
 import java.util.List;
 import lombok.Builder;
 import lombok.Value;
@@ -14,6 +14,6 @@ public class CatTravellerDetails {
     String email;
     String breed;
     String homePlanet;
-    List<AvailableRoutes> favouriteRoutes;
+    List<AvailableRoute> favouriteRoute;
 
 }
