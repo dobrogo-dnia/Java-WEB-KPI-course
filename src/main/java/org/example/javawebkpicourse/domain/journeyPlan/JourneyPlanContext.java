@@ -1,7 +1,5 @@
 package org.example.javawebkpicourse.domain.journeyPlan;
 
-import org.example.javawebkpicourse.common.SpaceRoute;
-import org.example.javawebkpicourse.dto.journeyPlan.JourneyPlanEntryDto;
 import java.util.List;
 import lombok.Builder;
 import lombok.Value;

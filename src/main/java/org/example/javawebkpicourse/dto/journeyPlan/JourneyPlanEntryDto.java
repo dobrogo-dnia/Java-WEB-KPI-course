@@ -2,7 +2,6 @@ package org.example.javawebkpicourse.dto.journeyPlan;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import java.util.UUID;
 import lombok.Builder;
 import lombok.Value;
 

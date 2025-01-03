@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active:
+      local
   application:
     name: java-WEB-KPI-course
 
@@ -11,3 +14,16 @@ application:
     dobby:
       name: dobby
       message: Hello from space cat ${application.greetings.dobby.name}
+  feature:
+    toggles:
+      traveller-greeting: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+application:
+  feature:
+    toggles:
+      traveller-greeting: true
